@@ -86,45 +86,6 @@ def deleteDataFromTable(db = 'scorVietnam', schema = 'public', tableName = 'appl
         if conn is not None:
             conn.close()
 
-'''            
-def getTableFromInfinto(tableName,req='*',limit='',dataBase='doctordong_production', where='',showTime=False):
-    time_help=time.time()
-    try:
-        server = SSHTunnelForwarder(('119.81.95.210', 22), ssh_password='Xy4n9kf9Yl0N', ssh_username='infinto', remote_bind_address=('127.0.0.1', 5432))
-        server.start()                 
-
-        conn_CN = psycopg2.connect(database=dataBase, user='infinto', password='Ozk1BPOjknTz', host='127.0.0.1' , port=server.local_bind_port)
-        df=pd.read_sql('select '+req+' from '+tableName+where+limit , conn_CN)
-        if showTime:
-            print(round(time.time()-time_help,2))
-        return df
-    except sshtunnel.BaseSSHTunnelForwarderError: 
-        print ('You have a problem with ssh tunnel')
-    
-'doctordong.vn'
-def getTableFromMyDB(tableName='applications',db='scorVietnam',schema='doctordong',req='*',where='',limit='',showTime=True,showQuery=False):
-    time_help=time.time()
-    try:  
-        conn = psycopg2.connect(database=db, user='postgres', password='qmzpqm', host='localhost' , port=5432)
-        if where=='':
-            query='select '+req+' from '+schema+'.'+tableName+limit
-        else:
-            query='select '+req+' from '+schema+'.'+tableName+' WHERE '+where+' '+limit
-        if showQuery:
-            print(query)
-        df=pd.read_sql(query,conn)
-        
-        if showTime:
-            print('getTableFromMyDB. Well done!')
-            print('Working time: ',round(time.time()-time_help,2),' sec.')
-        return df
-    except:
-        if showTime:
-            print('getTableFromMyDB. Error with load.')
-            print('Working time: ',round(time.time()-time_help,2),' sec.')
-'''            
-
-
 def getQueryFromMyDB(db = 'scorChina', query = '*', showTime = True):
     time_help = time.time()
     try:  
